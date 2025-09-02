@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>패스비 | 회원가입</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <!-- 상단바 -->
+  <header class="topbar">
+    <div class="brand">패스비</div>
+
+    <!-- 가운데(여백) -->
+    <div></div>
+
+    <!-- 우측: 검색 + 버튼들 -->
+    <nav class="top-actions">
+      <form class="search" role="search">
+        <button class="icon" aria-label="검색">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        <input type="search" placeholder="search" />
+      </form>
+
+      <a class="btn ghost" href="#">로그인</a>
+      <a class="btn ghost" href="#">회원가입</a>
+    </nav>
+  </header>
+
+  <!-- 왼쪽 레일 -->
+  <aside class="left-rail">
+    <div class="side-title">회원가입</div>
+  </aside>
+
+  <!-- 메인 -->
+  <main class="content">
+    <section class="form-wrap" aria-labelledby="title">
+      <div class="dot" aria-hidden="true"></div>
+
+      <h1 id="title">Create an account</h1>
+      <p class="sub">Already have an account? <a href="#">Log in</a></p>
+
+      <form id="signupForm" novalidate>
+        <div class="grid two">
+          <label class="field">
+            <span class="label">성</span>
+            <input type="text" name="lastName" required>
+          </label>
+          <label class="field">
+            <span class="label">이름</span>
+            <input type="text" name="firstName" required>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label">Email address</span>
+          <input type="email" name="email" required>
+        </label>
+
+        <div class="grid two">
+          <label class="field">
+            <span class="label">비밀번호</span>
+            <input type="password" name="password" minlength="8" required>
+          </label>
+          <label class="field">
+            <span class="label">비밀번호 확인</span>
+            <input type="password" name="password2" minlength="8" required>
+          </label>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" id="showPwd">
+          <span>Show password</span>
+        </label>
+
+        <a href="#" class="alt-link">log in instead</a>
+
+        <button class="btn cta" type="submit" disabled>Create an account</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="signup.js" defer></script>
+</body>
+</html>
