@@ -1,0 +1,114 @@
+/* ===== 변수 ===== */
+:root{
+  --yellow:#f6c500;
+  --yellow-deep:#f6c500;
+  --line:#111;
+
+  /* 육각형 크기 */
+  --hex-w:140px;
+  --hex-aspect:0.866;                 /* ≈ cos 30° */
+  --hex-h:calc(var(--hex-w)*var(--hex-aspect));
+
+  /* 프레임/검색 */
+  --border:2px;
+  --radius:26px;
+  --frame-pad:20px;
+  --search-h:50px;
+}
+
+/* ===== 기본 ===== */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family:"Noto Sans KR", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  background:#fff; color:var(--line);
+}
+
+/* ===== 프레임 ===== */
+.frame{ min-height:100vh; padding:var(--frame-pad); background:var(--yellow); }
+.stage{
+  position:relative;
+  min-height:calc(100vh - var(--frame-pad)*2);
+  background:#fff;
+  border:var(--border) solid var(--yellow);
+  outline:var(--border) solid var(--yellow);
+  padding:56px 24px 140px;
+}
+
+/* ===== 로고 ===== */
+.brand{ position:absolute; left:20px; top:16px; display:flex; gap:12px; font-weight:600; }
+.bee{ font-size:16px; line-height:1; }
+
+/* ===== 자유 배치 보드 ===== */
+.board{
+  position:relative;
+  width:min(780px, 92vw);
+  height:520px;      /* 캔버스 높이: 필요하면 늘리세요 */
+  margin: 20px auto 0;
+  /* 눈금이 필요하면 아래 주석 해제
+  background:
+    linear-gradient(#f5f5f5 1px, transparent 1px) 0 0/ 20px 20px,
+    linear-gradient(90deg, #f5f5f5 1px, transparent 1px) 0 0/ 20px 20px;
+  */
+}
+
+/* ===== 육각형 (absolute + 자유 좌표) ===== */
+.hex {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--hex-w);
+  height: var(--hex-h);
+  background: var(--line); /* 검정색 테두리 역할 */
+  clip-path: polygon(
+    25% 0%, 75% 0%,
+    100% 50%, 75% 100%,
+    25% 100%, 0% 50%
+  );
+  box-shadow: 0 0 0 0px var(--line); /* 테두리 두께 ↓ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.hex span {
+  width: 96%;
+  height: 96%;
+  background: var(--yellow-deep);
+  clip-path: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--line);
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/* ===== 검색 바 ===== */
+.search{
+  position:absolute; left:50%; bottom:36px; transform:translateX(-50%);
+  width:min(720px, 90vw); height:var(--search-h);
+  border-radius:var(--radius); background:var(--yellow);
+  box-shadow: inset 0 0 0 var(--border) var(--line);
+  display:flex; align-items:center; padding:0 16px 0 52px;
+}
+.search .icon{
+  position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  width:28px; height:28px; border:none; background:transparent; color:var(--line);
+  display:grid; place-items:center; cursor:pointer;
+}
+.search .icon svg{ width:22px; height:22px; display:block; }
+.search input{ flex:1; height:100%; border:none; background:transparent; font-size:16px; outline:none; }
+
+/* ===== 반응형 ===== */
+@media (max-width: 760px){
+  :root{ --hex-w:120px; }
+  .board{ height:480px; }
+}
+@media (max-width: 520px){
+  :root{ --hex-w:108px; }
+  .board{ height:460px; }
+}
