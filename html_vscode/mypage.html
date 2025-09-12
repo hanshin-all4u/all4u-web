@@ -8,13 +8,11 @@
   <!-- FullCalendar -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
 
-  <!-- 폰트 & 내 CSS -->
+  <!-- 폰트 + CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
-  <!-- 경로는 프로젝트 구조에 맞게 유지 -->
   <link rel="stylesheet" href="../css_vscode/mypage.css" />
 </head>
 <body>
@@ -26,12 +24,15 @@
         <h2 class="sb-title">마이페이지</h2>
         <p class="sb-sub">원하는 정보를 확인하세요.</p>
 
-        <div class="sb-actions">
-          <button class="sb-btn"><span class="stack">캘린더</span></button>
-          <button class="sb-btn"><span class="stack">관심<br>자격증</span></button>
-          <button class="sb-btn"><span class="stack">회원정보<br>수정</span></button>
-          <button class="sb-btn place-left"><span class="stack">원서접수<br>내역</span></button>
-          <button class="sb-btn place-right"><span class="stack">회원탈퇴</span></button>
+        <!-- 새 버튼 보드 -->
+        <div class="sb-free">
+          <!-- 위 3개 -->
+          <button class="cell" style="--x:10; --y:30;">캘린더</button>
+          <button class="cell" style="--x:50; --y:30;"><span class="stack">관심<br>자격증</span></button>
+          <button class="cell" style="--x:90; --y:30;"><span class="stack">회원정보<br>수정</span></button>
+          <!-- 아래 2개 -->
+          <button class="cell" style="--x:30; --y:80;"><span class="stack">원서접수<br>내역</span></button>
+          <button class="cell" style="--x:70; --y:80;">회원탈퇴</button>
         </div>
 
         <div class="sb-links">
@@ -44,7 +45,7 @@
 
     <!-- ===== 메인 ===== -->
     <main class="main-content">
-      <!-- 우측 상단: 검색 + 로그인/회원가입 -->
+      <!-- 우측 상단: 검색 + 버튼 -->
       <div class="top-bar">
         <nav class="top-actions">
           <form class="search" role="search" onsubmit="return handleSearch(event)">
@@ -64,16 +65,16 @@
         </nav>
       </div>
 
-      <!-- ===== 2열: 왼쪽 달력 / 오른쪽 패널 ===== -->
+      <!-- ===== 메인 그리드 ===== -->
       <section class="main-grid left-calendar">
-        <!-- 왼쪽: 달력 -->
+        <!-- 달력 -->
         <div class="col-left">
           <div class="calendar-shell">
             <div id="calendar"></div>
           </div>
         </div>
 
-        <!-- 오른쪽: 패널 -->
+        <!-- 오른쪽 패널 -->
         <aside class="col-right">
           <div class="panel panel-soft">
             <h3>다가오는 시험</h3>
@@ -112,64 +113,28 @@
     </main>
   </div>
 
-  <!-- 달력 스크립트: 월/주/일, 오늘 버튼 제거 + 우측 목록 → 이벤트 자동 반영 -->
   <script>
-    // 오른쪽 "다가오는 시험" 목록 → FullCalendar 이벤트로 변환
-    function buildEventsFromUpcoming() {
-      const items = document.querySelectorAll('#upcomingList li');
-      const events = [];
-      items.forEach(li => {
-        const strong = li.querySelector('strong');          // <strong>YYYY-MM-DD</strong>
-        if (!strong) return;
-
-        const dateStr = strong.textContent.trim();          // "2025-09-22"
-        // strong을 제외한 나머지 텍스트에서 시험명만 추출
-        const title = li.textContent
-          .replace(strong.textContent, '')
-          .replace(/[·\-–—]/, '')
-          .trim() || '시험';
-
-        events.push({
-          title,
-          start: dateStr,
-          allDay: true,
-          classNames: ['exam-event']                        // 스타일용 클래스
-        });
-      });
-      return events;
-    }
-
+    // FullCalendar
     document.addEventListener('DOMContentLoaded', function () {
       const calEl = document.getElementById('calendar');
-
-      // 오른쪽 목록에서 이벤트 가져오기
-      const upcomingEvents = buildEventsFromUpcoming();
-
       const calendar = new FullCalendar.Calendar(calEl, {
-        locale: 'ko',
         initialView: 'dayGridMonth',
+        locale: 'ko',
         height: 'auto',
         expandRows: true,
-
-        // 월/주/일, today 버튼 제거
         headerToolbar: {
           left: 'prev,next',
           center: 'title',
-          right: ''
+          right: ''   // 월/주/일/오늘 버튼 제거
         },
-
-        navLinks: true,
-        dayMaxEventRows: 3,
-        displayEventTime: false,
-
-        // 이벤트는 오른쪽 목록에서 자동 구성
-        events: upcomingEvents
+        events: [
+          { title: '정보처리기사', start: '2025-09-22', allDay: true, color:'#ffd400' },
+          { title: 'SQLD',        start: '2025-09-25', allDay: true, color:'#ffd400' }
+        ]
       });
-
       calendar.render();
     });
 
-    // 검색 제출: 비어 있으면 안내
     function handleSearch(e){
       e.preventDefault();
       const q = e.currentTarget.q.value.trim();
@@ -179,4 +144,3 @@
   </script>
 </body>
 </html>
-
