@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시험 후기</title>
+  <link rel="stylesheet" href="../css_vscode/review_full.css">
+</head>
+<body>
+  <div class="page">
+    <!-- 상단 -->
+    <header class="top-bar">
+      <nav class="top-actions">
+        <!-- 검색창 -->
+        <form class="search" role="search" onsubmit="return false;">
+          <button class="icon" type="submit" aria-label="검색">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="16.65" y1="16.65" x2="21" y2="21"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <input type="search" placeholder="검색어를 입력하세요" />
+        </form>
+        <!-- 로그인 / 회원가입 -->
+        <div class="auth-buttons">
+          <button>로그인</button>
+          <button>회원가입</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 본문 -->
+    <main class="content">
+      <h1>시험 후기</h1>
+      <section class="review-box">
+        <h2>정보처리기사</h2>
+        <p><strong>제목:</strong> 열심히만 하면 된다</p>
+        <div class="review-body">
+          후기내용 남기기 예시로 나는 쉬웠다 별로다 이런 점을 추천한다.<br>
+          교재는 뭐 썼고 인강은 뭐 들었다. 시험장 들어갔을 때 개인적으로 이랬다.<br>
+          준비 사항은 뭐뭐가 있다. 후기 내용 남기기 예시로 나는 쉬웠다 별로다 이런 점을 추천한다.<br>
+          후기내용 남기기 예시로 나는 쉬웠다 별로다 이런 점을 추천한다.<br>
+          후기내용 남기기 예시로 나는 쉬웠다 별로다 이런 점을 추천한다.<br>
+          후기내용 남기기 예시로 나는 쉬웠다 별로다 이런 점을 추천한다.<br>
+        </div>
+      </section>
+
+      <button class="list-btn">목록</button>
+
+      <!-- 검색 -->
+      <div class="search-bar">
+        <select>
+          <option>내용</option>
+          <option>제목</option>
+        </select>
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button>검색</button>
+      </div>
+    </main>
+
+    <!-- 위로가기 -->
+    <button class="to-top">↑</button>
+  </div>
+</body>
+</html>
