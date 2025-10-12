@@ -1,0 +1,115 @@
+/* 공통 */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #fff;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #111;
+}
+
+/* 노란 프레임 */
+.page {
+  min-height: 100vh;
+  border: 20px solid #ffd400; /* 프레임 */
+  background: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+/* 상단바 */
+.top-bar { display: flex; justify-content: flex-end; }
+.top-actions { display: flex; align-items: center; gap: 12px; }
+
+/* 검색창 */
+.search { display: flex; flex-direction: row-reverse; align-items: center; gap: 8px; }
+.search .icon {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border: 1px solid #000; border-radius: 50%; background: #ffd400; color: #000;
+  cursor: pointer;
+}
+.search svg { width: 18px; height: 18px; }
+.search input {
+  width: 0; opacity: 0; padding: 0; height: 36px;
+  border: 1px solid #000; border-radius: 999px;
+  background: #fff; font-size: 14px; line-height: 36px;
+  transition: width .25s ease, opacity .25s ease, padding .25s ease;
+}
+.search:hover input,
+.search:focus-within input {
+  width: 220px; opacity: 1; padding: 0 12px;
+}
+
+/* 로그인/회원가입 버튼 */
+.auth-buttons { display: flex; gap: 10px; }
+.auth-buttons button {
+  height: 36px; padding: 0 12px;
+  background: #ffd400; border: 1px solid #000; border-radius: 8px;
+  font-weight: 700; cursor: pointer;
+}
+
+/* 본문 */
+.content { text-align: center; }
+.content h1 { margin: 20px 0; font-size: 28px; }
+
+/* 후기 박스 */
+.review-box {
+  border: 3px solid #ffd400;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+.review-box h2 { margin-bottom: 10px; }
+.review-body {
+  text-align: left;
+  line-height: 1.6;
+  height: 400px;              /* 고정된 높이 (길게) */
+  overflow-y: auto;           /* 내용 넘치면 스크롤 */
+  padding: 10px;
+}
+.review-answer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc; /* 질문/답변 구분선 */
+    font-size: 1.1em; /* 글자 크기 살짝 키움 */ 
+    font-weight: 500; /* 답변 내용 강조 */
+}
+.review-answer p {
+    margin: 0; 
+}
+
+/* 목록 버튼 */
+.list-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 8px 16px;
+  border: 1px solid #111;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* 검색바 */
+.search-bar {
+  display: flex; justify-content: center; gap: 5px; margin-top: 20px;
+}
+.search-bar input {
+  padding: 6px; border: 1px solid #ccc; width: 200px;
+}
+.search-bar button {
+  background: #ffd400; border: 1px solid #111; cursor: pointer;
+}
+
+/* 위로가기 버튼 */
+.to-top {
+  position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%);
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid #111; background: #ffd400;
+  color: #111; font-size: 20px; cursor: pointer;
+  display: grid; place-items: center;
+}
+
+p {
+  text-align: justify;
+}
