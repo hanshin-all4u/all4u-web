@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>패스비 | 검색 결과</title>
-  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="../css_vscode/search.css">
 </head>
 <body>
-  <!-- 상단바 -->
   <header class="topbar">
     <div class="brand">패스비</div>
     <nav class="top-actions">
@@ -16,83 +15,18 @@
     </nav>
   </header>
 
-  <!-- 검색창 -->
   <section class="search-bar">
     <form id="searchForm">
-      <input id="searchInput" type="text" placeholder="검색어를 입력하세요" value="정보처리기사">
+      <input id="searchInput" type="text" placeholder="검색어를 입력하세요" value="">
       <button type="submit" class="btn primary">검색</button>
     </form>
   </section>
 
-  <!-- 검색 결과 -->
   <main class="results">
-    <h1>검색 결과: <span id="searchKeyword">"정보처리기사"</span></h1>
+    <h1>검색 결과: <span id="searchKeyword"></span></h1>
     <div id="resultsContainer" class="card-list">
-      <!-- JS에서 검색 결과 카드 삽입 -->
-    </div>
+      </div>
   </main>
 
-  <script>
-    const form = document.getElementById("searchForm");
-    const input = document.getElementById("searchInput");
-    const keywordSpan = document.getElementById("searchKeyword");
-    const resultsContainer = document.getElementById("resultsContainer");
-
-    // 예시용 더미 API 호출 (백엔드 준비되면 URL 교체)
-    async function fetchResults(query) {
-      try {
-        // 여기를 백엔드 API 주소로 바꿔야 함 (예: /api/search?keyword=...)
-        const response = await fetch(`/api/search?keyword=${encodeURIComponent(query)}`);
-        if (!response.ok) throw new Error("API 호출 실패");
-        return await response.json(); // JSON 배열 가정
-      } catch (e) {
-        console.error(e);
-        return [];
-      }
-    }
-
-    function renderResults(results) {
-      resultsContainer.innerHTML = "";
-
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `
-          <div class="card">
-            <h2>검색 결과 없음</h2>
-            <p>입력한 자격증에 대한 정보가 없습니다.</p>
-          </div>
-        `;
-        return;
-      }
-
-      results.forEach(item => {
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <h2>${item.title}</h2>
-          <p>${item.description}</p>
-          <a href="${item.link}" class="btn link">바로가기</a>
-        `;
-        resultsContainer.appendChild(card);
-      });
-    }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const query = input.value.trim();
-      if (!query) return;
-
-      keywordSpan.textContent = `"${query}"`;
-
-      const results = await fetchResults(query);
-      renderResults(results);
-    });
-
-    // 페이지 첫 진입 시 초기 검색 실행
-    (async () => {
-      const initialQuery = input.value.trim();
-      const results = await fetchResults(initialQuery);
-      renderResults(results);
-    })();
-  </script>
-</body>
+  <script src="../js_vscode/search.js"></script> </body>
 </html>
