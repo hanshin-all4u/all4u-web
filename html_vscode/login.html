@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>패스비 | 로그인</title>
+  <link rel="stylesheet" href="../css_vscode/login.css" />
+</head>
+<body>
+  <!-- 상단바 -->
+  <header class="topbar">
+    <div class="brand">패스비</div>
+
+    <!-- 가운데 빈 칸(그리드 1fr 자리) -->
+    <div></div>
+
+    <!-- 우측 액션: 검색창 + 로그인/회원가입 -->
+    <nav class="top-actions">
+      <!-- 검색창: 아이콘만 보이다가 hover/focus 시 왼쪽으로 펼쳐짐 -->
+      <form class="search" role="search">
+        <button class="icon" aria-label="검색">
+          <!-- 돋보기 아이콘 (SVG) -->
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        <input type="search" placeholder="search" />
+      </form>
+
+      <a class="btn ghost" href="#">로그인</a>
+      <a class="btn ghost" href="#">회원가입</a>
+    </nav>
+  </header>
+
+  <!-- 좌측 사이드(가로 텍스트) -->
+  <aside class="left-rail">
+    <div class="vertical-title" aria-hidden="true">로그인</div>
+  </aside>
+
+  <!-- 메인 -->
+  <main class="content">
+    <section class="card login-card" aria-labelledby="title">
+      <h1 id="title">이메일과 비밀번호를<br />입력해주세요.</h1>
+
+      <form id="loginForm" class="form" novalidate>
+        <label class="field">
+          <span class="label">이메일</span>
+          <input type="email" id="email" placeholder="sample@gmail.com" required />
+        </label>
+
+        <label class="field">
+          <span class="label">비밀번호</span>
+          <input type="password" id="password" placeholder="영문, 숫자, 특수문자 포함 8자 이상" minlength="8" required />
+        </label>
+
+        <button type="submit" class="btn primary">로그인</button>
+
+        <label class="checkbox">
+          <input type="checkbox" name="autoLogin" />
+          <span>자동 로그인</span>
+        </label>
+
+        <div class="links">
+          <a href="#">계정 찾기</a>
+          <span class="sep">|</span>
+          <a href="#">비밀번호 재설정</a>
+        </div>
+
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="../js_vscode/login.js"></script>
+</body>
+</html>
