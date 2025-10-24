@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #fff;
+}
+
+.container {
+  border: 10px solid #ffcc00;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-btn,
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* ▼▼▼ [삭제] 기존 검색창 스타일 삭제 ▼▼▼ */
+/*
+.search-box { ... }
+.search-box.active { ... }
+.search-input { ... }
+.search-box.active .search-input { ... }
+*/
+/* ▲▲▲ [삭제] 기존 검색창 스타일 삭제 ▲▲▲ */
+
+
+/* ▼▼▼ [추가] 로그인 페이지의 반응형 검색창 스타일 ▼▼▼ */
+.search {
+  display: flex;
+  flex-direction: row-reverse; /* 아이콘 오른쪽 배치 */
+  align-items: center;
+  height: 44px;
+  width: 54px; /* 기본 아이콘 크기 */
+  padding: 0 8px;
+  gap: 8px;
+  background: #fffbe6;
+  border: 1px solid #ffcc00;
+  border-radius: 28px;
+  overflow: hidden;
+  transition: width .35s ease;
+}
+
+/* 마우스를 올리거나, 안쪽 요소에 포커스가 가면 확장 */
+.search:hover,
+.search:focus-within {
+  width: 220px;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  padding: 0 6px;
+  width: 0;
+  opacity: 0;
+  transition: width .3s ease, opacity .2s ease;
+}
+
+.search:hover input,
+.search:focus-within input {
+  width: 100%;
+  opacity: 1;
+}
+
+.search .icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+/* ▲▲▲ [추가] 로그인 페이지의 반응형 검색창 스타일 ▲▲▲ */
+
+
+/* (MAIN, FOOTER 등 나머지 CSS는 그대로 유지) */
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.detail-card {
+  /* ▼▼▼ [수정] 배경색을 원래의 노란색으로 복원 ▼▼▼ */
+  background-color: #fff2a8;
+  border-radius: 15px;
+  width: 80%;
+  padding: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cert-name {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+/* ... 이하 스타일은 그대로 유지 ... */
