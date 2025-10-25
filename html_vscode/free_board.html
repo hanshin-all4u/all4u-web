@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자유게시판</title>
+  <link rel="stylesheet" href="../css_vscode/free_board.css">
+</head>
+<body>
+  <div class="page">
+    <!-- 상단 -->
+    <header class="top-bar">
+      <nav class="top-actions">
+        <!-- 검색창 -->
+        <form class="search" role="search" onsubmit="return false;">
+          <button class="icon" type="submit" aria-label="검색">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="16.65" y1="16.65" x2="21" y2="21"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <input type="search" placeholder="검색어를 입력하세요" />
+        </form>
+        <!-- 로그인 / 회원가입 -->
+        <div class="auth-buttons">
+          <button>로그인</button>
+          <button>회원가입</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 본문 -->
+    <main class="content">
+      <h1>자유게시판</h1>
+      <section class="review-box">
+        
+        <!-- ==========[ 수정된 제목 및 작성자 형식 ]========== -->
+        <!-- <h2>정보처리기사 시험 난이도 <span class="title-icon">❐</span></h2> <-- 아이콘 삭제 -->
+        <h2>정보처리기사 시험 난이도</h2>
+        
+        <div class="post-author">
+          <span class="author-name">관리자</span>
+          <span class="separator">|</span>
+          <span class="post-date">2025. 10. 24. 10:00</span>
+        </div>
+
+        <!-- 3. 구분선 추가 -->
+        <hr class="post-divider">
+        <!-- ==========[ /수정된 형식 ]========== -->
+        
+        <div class="review-body">
+          정보처리기사 시험 난이도는 얼마정도 되나요?<br>
+          <!-- (내용이 길어지면 여기에 계속 추가됩니다) -->
+        </div>
+      </section>
+
+      <!-- 4. 댓글 목록 (기존 '답변' 영역) -->
+      <section class="comment-section">
+        
+        <!-- 댓글 1 -->
+        <div class="comment-card">
+          <!-- 5. 아바타 영역 -->
+          <div class="comment-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332C3.154 11.91 3 12.65 3 12.996V13z"/>
+            </svg>
+          </div>
+          <!-- 6. 댓글 내용 영역 -->
+          <div class="comment-content">
+            <div class="comment-header">
+              <strong>곰탱이</strong>
+              <span class="comment-date">2025. 10. 24. 10:30</span>
+            </div>
+            <div class="comment-body">
+              <p>필기는 기출 문제 대로 나온다고 보면 됩니다.</p>
+            </div>
+            <div class="comment-footer">
+              <button class="reply-btn">답글</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 댓글 2 -->
+        <div class="comment-card">
+          <div class="comment-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332C3.154 11.91 3 12.65 3 12.996V13z"/>
+            </svg>
+          </div>
+          <div class="comment-content">
+            <div class="comment-header">
+              <strong>신입개발자</strong>
+              <span class="comment-date">2025. 10. 24. 11:15</span>
+            </div>
+            <div class="comment-body">
+              <p>실기도 만만치 않던데요... ㅠㅠ SQL이랑 프로그래밍 파트가 어려웠어요.</p>
+            </div>
+            <div class="comment-footer">
+              <button class="reply-btn">답글</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 댓글 3 (글쓴이) + 대댓글 -->
+        <div class="comment-card">
+          <div class="comment-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332C3.154 11.91 3 12.65 3 12.996V13z"/>
+            </svg>
+          </div>
+          <div class="comment-content">
+            <div class="comment-header">
+              <strong>관리자</strong> <span class="author-tag">(글쓴이)</span>
+              <span class="comment-date">2025. 10. 24. 11:20</span>
+            </div>
+            <div class="comment-body">
+              <p>아, 역시 실기가 문제군요. 조언 감사합니다!</p>
+            </div>
+            <div class="comment-footer">
+              <button class="reply-btn">답글</button>
+            </div>
+            
+            <!-- 7. 대댓글 예시 -->
+            <div class="comment-reply comment-card">
+              <div class="comment-avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332C3.154 11.91 3 12.65 3 12.996V13z"/>
+                </svg>
+              </div>
+              <div class="comment-content">
+                <div class="comment-header">
+                  <strong>신입개발자</strong>
+                  <span class="comment-date">2025. 10. 24. 11:25</span>
+                </div>
+                <div class="comment-body">
+                  <p>화이팅입니다! ㅎㅎ</p>
+                </div>
+                <div class="comment-footer">
+                  <button class="reply-btn">답글</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 1. 댓글 입력창 -->
+      <section class="comment-form">
+        <h3>댓글 쓰기</h3>
+        <textarea placeholder="댓글을 입력하세요..." rows="4"></textarea>
+        <button type="button">댓글 등록</button>
+      </section>
+
+
+      <button class="list-btn">목록</button>
+
+      <!-- 검색 -->
+      <div class="search-bar">
+        <select>
+          <option>자격증 이름</option>
+          <option>내용</option>
+        </select>
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button>검색</button>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ==========[ JAVASCRIPT 추가 ]========== -->
+  <script>
+    // 1. 답글 폼을 생성하는 함수
+    function createReplyForm() {
+      const formContainer = document.createElement('div');
+      formContainer.className = 'reply-form-container'; // CSS 스타일을 위한 클래스
+      
+      formContainer.innerHTML = `
+        <textarea placeholder="답글을 입력하세요..." rows="3"></textarea>
+        <div class="reply-form-buttons">
+            <button type="button" class="reply-cancel-btn">취소</button>
+            <button type="button" class="reply-submit-btn">등록</button>
+        </div>
+      `;
+      return formContainer;
+    }
+
+    // 2. '답글' 버튼 클릭 이벤트 처리 함수
+    function handleReplyClick(event) {
+      event.preventDefault(); // 기본 동작(링크 이동 등) 방지
+
+      // 2-1. 혹시 이미 열려있는 답글 폼이 있다면 제거
+      const existingForm = document.querySelector('.reply-form-container');
+      if (existingForm) {
+        existingForm.remove();
+      }
+
+      // 2-2. 클릭된 '답글' 버튼이 속한 댓글의 내용(.comment-content) 영역을 찾음
+      const commentContent = event.target.closest('.comment-content');
+      
+      // 2-3. 새로운 답글 폼을 생성
+      const replyForm = createReplyForm();
+      
+      // 2-4. 댓글 내용 영역의 맨 끝에 답글 폼을 추가
+      commentContent.appendChild(replyForm);
+      
+      // 2-5. 새로 생긴 '취소' 버튼에 클릭 이벤트 추가
+      replyForm.querySelector('.reply-cancel-btn').addEventListener('click', () => {
+        replyForm.remove(); // 폼 제거
+      });
+      
+      // 2-6. 새로 생긴 '등록' 버튼에 클릭 이벤트 추가
+      // (지금은 백엔드가 없으므로, 간단히 폼을 닫는 것으로 처리)
+      replyForm.querySelector('.reply-submit-btn').addEventListener('click', () => {
+        const replyText = replyForm.querySelector('textarea').value;
+        if (replyText.trim() === "") {
+          // alert("답글 내용을 입력하세요."); // alert 대신 다른 방식 사용 권장
+          replyForm.querySelector('textarea').focus();
+        } else {
+          // [알림]
+          // 나중에 백엔드가 구현되면, 여기서 replyText 값을 서버로 전송합니다.
+          // 지금은 폼만 닫습니다.
+          console.log("새 답글 (전송X):", replyText); 
+          replyForm.remove();
+        }
+      });
+
+      // 2-7. 폼이 열리면 바로 텍스트 입력창에 포커스
+      replyForm.querySelector('textarea').focus();
+    }
+
+    // 3. 페이지가 모두 로드되면...
+    document.addEventListener('DOMContentLoaded', () => {
+      // 3-1. 모든 '답글' 버튼(.reply-btn)을 찾아서
+      const replyButtons = document.querySelectorAll('.reply-btn');
+      
+      // 3-2. 각각의 버튼에 클릭 이벤트 리스너를 달아줌
+      replyButtons.forEach(button => {
+        button.addEventListener('click', handleReplyClick);
+      });
+    });
+  </script>
+  <!-- ==========[ /JAVASCRIPT ]========== -->
+
+</body>
+</html>
+
