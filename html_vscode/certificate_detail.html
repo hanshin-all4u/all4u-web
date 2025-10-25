@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>자격증 상세보기</title>
-  <link rel="stylesheet" href="certificate_detail.css">
+  <link rel="stylesheet" href="../css_vscode/certificate_detail.css">
 </head>
 <body>
   <div class="container">
@@ -18,34 +18,32 @@
             <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
           </svg>
         </button>
-        <input type="search" placeholder="검색" />
+        <input type="search" name="query" placeholder="검색" />
       </form>
-      <button class="menu-btn">☰</button>
     </header>
 
     <main>
       <section class="detail-card">
-        <h1 class="cert-name">정보처리기사</h1>
-        <p class="cert-field">(IT)</p>
+        <h1 class="cert-name" **id="certName"**></h1>
+        <p class="cert-field" **id="certSeries"**></p>
         <hr>
         <div class="cert-info">
           <h2>자격증 설명</h2>
-          <p>
-            정보처리기사는 소프트웨어 개발 및 데이터 관리, 시스템 분석·설계 등
-            IT 관련 업무를 수행할 수 있는 전문 기술인을 인증하는 국가 자격증입니다.
-          </p>
+          <p **id="certSummary"**></p>
           <h2>취업 분야</h2>
-          <p>
-            IT 기업, 공공기관 전산직, 금융권 전산 담당, 시스템 엔지니어, 개발자 등
-            다양한 분야에서 활용됩니다.
-          </p>
+          <h2>진로 및 전망</h2> <p **id="certCareer"></p>
           <h2>시험 구분</h2>
-          <p>필기 및 실기</p>
-          <h2>난이도</h2>
-          <p>★★★☆☆ (중상)</p>
-        </div>
-        <div class="bottom-nav">
-          <button class="data-btn">자료실로 이동</button>
+          <p **id="certQualgbnm"**></p>
+          <h2>취업 분야</h2>
+          <p **id="certCareer"**></p>
+          <h2>수행 직무</h2>
+          <p **id="certJob"**></p>
+          <h2>시험 과목 목록</h2>
+          <p **id="certSubjects"**>
+          <h2>실기 지참물 목록</h2>
+          <p **id="certPracticalItems"**></p>
+          <h2>출제 경향</h2>
+          <p **id="certTrend"**></p>
         </div>
       </section>
     </main>
@@ -55,6 +53,7 @@
     </footer>
   </div>
 
-  <script src="certificate_detail.js"></script>
+  <script src="../js_vscode/certificate_detail.js"></script>
+  <script src="../js_vscode/search_all.js"></script>
 </body>
 </html>
