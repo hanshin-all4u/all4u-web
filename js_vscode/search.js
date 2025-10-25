@@ -1,37 +1,47 @@
-document.getElementById("searchForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const query = document.getElementById("searchInput").value.trim();
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = "<p>검색 중...</p>";
+// js_vscode/search_all.js
 
-  if (!query) {
-    resultsDiv.innerHTML = "<p class='no-results'>검색어를 입력하세요.</p>";
-    return;
-  }
+const SEARCH_PAGE_URL = 'search.html'; 
 
-  // 👉 백엔드 API 연동 자리
-  fetch(`/api/search?query=${encodeURIComponent(query)}`)
-    .then(res => res.json())
-    .then(data => {
-      resultsDiv.innerHTML = "";
-
-      if (data.results && data.results.length > 0) {
-        data.results.forEach(item => {
-          const div = document.createElement("div");
-          div.className = "result-item";
-          div.innerHTML = `
-            <h3>${item.title}</h3>
-            <p>${item.description || "설명이 없습니다."}</p>
-            <a href="${item.link}">자세히 보기</a>
-          `;
-          resultsDiv.appendChild(div);
-        });
-      } else {
-        resultsDiv.innerHTML = "<p class='no-results'>검색 결과가 없습니다.</p>";
-      }
-    })
-    .catch(err => {
-      console.error("검색 오류:", err);
-      resultsDiv.innerHTML = "<p class='no-results'>오류가 발생했습니다.</p>";
+/**
+ * 모든 검색 폼에 이벤트 리스너를 연결하여 search.html로 리다이렉트시키는 함수
+ */
+function initializeGlobalSearch() {
+    // 모든 검색 폼 (class="search" 사용)을 찾습니다.
+    const searchForms = document.querySelectorAll('.search');
+    
+    searchForms.forEach(searchForm => {
+        searchForm.addEventListener('submit', handleGlobalSearchSubmit);
     });
-});
+}
+
+/**
+ * 검색 폼 제출 이벤트를 처리하고 검색 페이지로 이동시키는 함수
+ */
+function handleGlobalSearchSubmit(e) {
+    e.preventDefault();
+    
+    // input[name="query"]의 값을 가져옵니다.
+    const queryInput = e.currentTarget.querySelector('input[name="query"]');
+    const query = queryInput ? queryInput.value.trim() : '';
+    
+    if (!query) {
+        alert('검색어를 입력하세요.');
+        return false;
+    }
+
+    const encodedQuery = encodeURIComponent(query);
+    
+    // 현재 페이지가 search.html인 경우 (페이지 전환 없이 URL만 변경)
+    if (window.location.pathname.includes(SEARCH_PAGE_URL)) {
+        window.history.pushState({}, '', `${SEARCH_PAGE_URL}?query=${encodedQuery}`);
+        
+        // URL 변경 후 search.js의 초기 검색 로직을 수동으로 다시 실행 (DOM 컨텐츠가 바뀌었음을 알림)
+        const event = new Event('DOMContentLoaded');
+        document.dispatchEvent(event);
+    } else {
+        // 다른 페이지에서는 search.html로 이동
+        window.location.href = `${SEARCH_PAGE_URL}?query=${encodedQuery}`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializeGlobalSearch);
