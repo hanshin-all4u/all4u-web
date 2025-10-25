@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>패스비 · 시험 후기</title>
+
+  <!-- 폰트 & CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css_vscode/review.css" />
+</head>
+<body>
+  <div class="frame">
+    <main class="stage">
+      <!-- 상단 우측: 검색 + 로그인/회원가입 -->
+      <div class="topbar">
+        <nav class="top-actions">
+          <!-- 검색: 아이콘만 보이다가 hover/focus 시 왼쪽으로 펼쳐짐 -->
+          <form class="search" role="search" onsubmit="return false">
+            <button class="icon" type="submit" aria-label="검색">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <input type="search" name="query" placeholder="검색어를 입력하세요" autocomplete="off" />
+          </form>
+
+          <div class="auth">
+            <button class="btn">로그인</button>
+            <button class="btn">회원가입</button>
+          </div>
+        </nav>
+      </div>
+
+      <!-- 제목 -->
+      <h1 class="page-title">시험 후기</h1>
+
+      <!-- 후기 카드 그리드 -->
+      <section class="reviews-grid">
+        <!-- 카드 1 -->
+        <article class="review-card">
+          <h3 class="r-title">정보처리기사</h3>
+          <p class="r-sub">필기 1회 합격 / 실기 준비</p>
+          <p class="r-body">
+            교재는 ‘OOO’를 썼고, 기출을 많이 풀었다가 어떤 점을 정리했는지
+            적었어요. 실전 팁은 시간관리랑 마킹 실수 방지! …
+          </p>
+          <div class="r-meta">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="meta-text">감귤 · 20분 전 · 오후 6시</div>
+          </div>
+        </article>
+
+        <!-- 카드 2 -->
+        <article class="review-card">
+          <h3 class="r-title">정보처리기사</h3>
+          <p class="r-sub">필기 1회 합격 / 실기 준비</p>
+          <p class="r-body">
+            기출 분석 위주로 공부했고 과목별 포인트를 요약해 공유합니다.
+            실기는 일정 나와서 프로젝트형 대비 중이에요…
+          </p>
+          <div class="r-meta">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="meta-text">라임 · 23분 전 · 오후 6시</div>
+          </div>
+        </article>
+
+        <!-- 카드 3 -->
+        <article class="review-card">
+          <h3 class="r-title">정보처리기사</h3>
+          <p class="r-sub">필기 1회 합격 / 실기 준비</p>
+          <p class="r-body">
+            과목별로 헷갈렸던 개념들 위주로 정리했어요. 네트워크/운영체제 파트는
+            도식화가 도움이 많이 됐어요…
+          </p>
+          <div class="r-meta">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="meta-text">밤톨 · 32분 전 · 오후 5시</div>
+          </div>
+        </article>
+
+        <!-- 카드 4 -->
+        <article class="review-card">
+          <h3 class="r-title">정보처리기사</h3>
+          <p class="r-sub">필기 1회 합격 / 실기 준비</p>
+          <p class="r-body">
+            실전에서 시간 부족할 수 있으니, 과감히 넘기는 전략을 추천합니다.
+            마지막 10분은 검토 시간으로 남겨두기!
+          </p>
+          <div class="r-meta">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="meta-text">솜 · 40분 전 · 오후 5시</div>
+          </div>
+        </article>
+
+        <!-- 카드 5 -->
+        <article class="review-card">
+          <h3 class="r-title">정보처리기사</h3>
+          <p class="r-sub">필기 1회 합격 / 실기 준비</p>
+          <p class="r-body">
+            오답노트가 확실히 도움 됩니다. 자주 틀리는 문항은 따로 모아서 반복!
+          </p>
+          <div class="r-meta">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="meta-text">초코 · 1시간 전 · 오후 4시</div>
+          </div>
+        </article>
+
+        <!-- 카드 6 -->
+        <article class="review-card">
+          <h3 class="r-title">정보처리기사</h3>
+          <p class="r-sub">필기 1회 합격 / 실기 준비</p>
+          <p class="r-body">
+            CBT라서 인터페이스 적응이 중요해요. 모의고사 사이트로 손에 익히면 좋아요.
+          </p>
+          <div class="r-meta">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="meta-text">해밀 · 2시간 전 · 오후 3시</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- 하단 필터/검색 -->
+      <div class="filter-bar">
+        <select class="select">
+          <option>자격증 이름</option>
+          <option>내용</option>
+        </select>
+
+        <div class="search-long">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="go" aria-label="검색">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <nav class="pagination" aria-label="페이지">
+        <a class="page is-active" href="#">1</a>
+        <a class="page" href="#">2</a>
+        <a class="page" href="#">3</a>
+        <a class="page" href="#">4</a>
+        <a class="page" href="#">5</a>
+        <a class="page next" href="#" aria-label="다음 페이지">›</a>
+      </nav>
+
+      <button class="to-top" aria-label="위로가기">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="black">
+          <path d="M12 4l-8 8h5v8h6v-8h5z"></path>
+        </svg>
+      </button>
+
+  </div>
+  <script src="../js_vscode/search_all.js"></script>
+</body>
+</html>
