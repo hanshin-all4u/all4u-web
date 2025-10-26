@@ -9,6 +9,7 @@
 <body>
   <div class="container">
     <header>
+      <button class="back-btn">←</button>
 
       <form class="search" role="search">
         <button class="icon" aria-label="검색">
@@ -23,27 +24,26 @@
 
     <main>
       <section class="detail-card">
-        <h1 class="cert-name" **id="certName"**></h1>
-        <p class="cert-field" **id="certSeries"**></p>
+        <h1 class="cert-name" id="certName"></h1>
+        <p class="cert-field" id="certSeries"></p>
         <hr>
         <div class="cert-info">
           <h2>자격증 설명</h2>
-          <p **id="certSummary"**></p>
-          <h2>취업 분야</h2>
-          <h2>진로 및 전망</h2> <p **id="certCareer"></p>
+          <p id="certSummary"></p>
+          <h2>진로 및 전망</h2>
+          <p id="certCareer"></p>
           <h2>시험 구분</h2>
-          <p **id="certQualgbnm"**></p>
-          <h2>취업 분야</h2>
-          <p **id="certCareer"**></p>
+          <p id="certQualgbnm"></p>
           <h2>수행 직무</h2>
-          <p **id="certJob"**></p>
+          <p id="certJob"></p>
           <h2>시험 과목 목록</h2>
-          <p **id="certSubjects"**>
+          <p id="certSubjects"></p>
           <h2>실기 지참물 목록</h2>
-          <p **id="certPracticalItems"**></p>
+          <p id="certPracticalItems"></p>
           <h2>출제 경향</h2>
-          <p **id="certTrend"**></p>
-        </div>
+          <p id="certTrend"></p>
+          </div>
+        <button class="top-btn" style="position: fixed; bottom: 20px; right: 20px; display: none; padding: 10px; background-color: #ffd400; border: 1px solid black; border-radius: 5px; cursor: pointer;">TOP</button>
       </section>
     </main>
 
