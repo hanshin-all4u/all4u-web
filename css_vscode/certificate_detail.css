@@ -117,4 +117,29 @@ main {
   text-align: center;
   margin-bottom: 0;
 }
-/* ... 이하 스타일은 그대로 유지 ... */
+
+.cert-field {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* certificate_detail.css 파일에 적용 */
+/* certificate_detail.css */
+
+header {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: flex-end; /* 📌 자식 요소를 오른쪽 끝으로 정렬 */
+    align-items: center; /* 수직 중앙 정렬 (선택 사항이지만 깔끔하게 보임) */
+    width: 100%; /* 헤더가 컨테이너 너비를 모두 사용하도록 */
+    padding: 10px 0; /* 상하 여백 추가 (선택 사항) */
+}
+
+/* MAIN CONTENT: 들여쓰기 및 불필요한 마진 제거 */
+.cert-info p {
+    /* 이전에 발생했던 들여쓰기 문제를 해결하기 위해 마진을 초기화 */
+    margin-left: 0 !important; /* 혹시 모를 충돌 방지를 위해 0으로 설정 */
+    margin-right: 0;
+    margin-top: 5px; /* 제목과 내용 사이의 간격 유지 */
+    margin-bottom: 15px;
+    padding-left: 0 !important;
+}
