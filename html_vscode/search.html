@@ -1,34 +1,35 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>패스비 | 검색 결과</title>
-  <link rel="stylesheet" href="../css_vscode/search.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>패스비 | 검색 결과</title>
+  <link rel="stylesheet" href="../css_vscode/search.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">패스비</div>
-    <nav class="top-actions">
-      <a class="btn ghost" href="login.html">로그인</a>
-      <a class="btn ghost" href="signup.html">회원가입</a>
-    </nav>
-  </header>
+  <header class="topbar">
+    <div class="brand">패스비</div>
+    <nav class="top-actions">
+      <a class="btn ghost" href="../html_vscode/login.html">로그인</a>
+      <a class="btn ghost" href="../html_vscode/signup.html">회원가입</a>
+    </nav>
+  </header>
 
-  <section class="search-bar">
-    <form id="searchForm">
-      <input id="searchInput" type="text" placeholder="검색어를 입력하세요" value="정보처리기사">
-      <button type="submit" class="btn primary">검색</button>
-    </form>
-  </section>
+  <section class="search-bar">
+        <form id="searchForm" class="search" role="search"> 
+            <input id="searchInput" type="text" name="query" placeholder="검색어를 입력하세요"> 
+      <button type="submit" class="btn primary">검색</button>
+    </form>
+  </section>
 
-  <main class="results">
-    <h1>검색 결과: <span id="searchKeyword"></span></h1>
-    <div id="resultsContainer" class="card-list">
-    </div>
-  </main>
+  <main class="results">
+        <h1>검색 결과: "<span id="searchKeyword"></span>"</h1> 
+        <div id="resultsContainer" class="card-list search-results-container">
+    </div>
+  </main>
 
-  <script src="../js_vscode/search_all.js"></script>
-  <script src="../js_vscode/search.js"></script>
+    <script src="../js_vscode/search_all.js"></script> 
+  <script src="../js_vscode/search.js"></script>
 </body>
 </html>
+
