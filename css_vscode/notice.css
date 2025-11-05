@@ -9,7 +9,7 @@
   --topbar-h:72px;
   --rail-w:260px;
   --radius:12px;
-  --max:960px;           /* 표 영역 최대폭 */
+  --max:960px;             /* 표 영역 최대폭 */
 }
 
 *{ box-sizing:border-box }
@@ -82,8 +82,8 @@ body{
 /* 액션 */
 /* 표와 같은 폭 컨테이너 */
 .table-group{
-  width:640px;              /* 표 기준 폭 */
-  margin:0 auto;            /* 중앙 정렬 */
+  width:640px;             /* 표 기준 폭 */
+  margin:0 auto;           /* 중앙 정렬 */
 }
 
 /* 표 위 필터 라인 (가로폭 100%, 표와 동일 폭) */
@@ -91,7 +91,7 @@ body{
   display:flex;
   gap:8px;
   width:100%;
-  margin:0 0 10px;          /* 표 위 간격 */
+  margin:0 0 10px;         /* 표 위 간격 */
   justify-content:flex-end; /* 이미지처럼 오른쪽 정렬 원하면 유지 */
 }
 .inline-filter select,
@@ -127,7 +127,7 @@ body{
 .table thead th{ background:#f3f4f6; font-weight:700 }
 .table tbody tr:nth-child(even){ background:#fafafa }
 
-/* 하단 검색 */
+/* 하단 검색 (원래 첨부 관련 스타일이 없었으므로 변경 없음) */
 .inline-filter{
   margin:18px auto 14px; width:640px; display:flex; gap:8px; justify-content:flex-end;
 }
@@ -173,4 +173,16 @@ body{
   .content{ margin-left:0; width:100vw; }
   .table, .inline-filter, .pagination{ width:100%; max-width:640px }
   .content-footer{ margin:0 -16px; padding:0 16px }
+}
+
+/* 모든 헤더(th)를 중앙 정렬 */
+.table th {
+  text-align: center;
+}
+
+/* 1번(No), 3번(등록일) 데이터(td)만 중앙 정렬 */
+/* (2번 '제목' 데이터는 기본 왼쪽 정렬 유지) */
+.table td:nth-child(1),
+.table td:nth-child(3) {
+  text-align: center;
 }
