@@ -1,0 +1,170 @@
+/* 변수 */
+:root{
+  --yellow: #ffd400;
+  --yellow-soft: #ffef87;
+  --line: #111;
+  --frame-pad: 18px;
+  --radius: 18px;
+}
+
+/* 기본 */
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family:"Noto Sans KR", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color:var(--line);
+  background:#fff;
+}
+
+/* 바깥 노란 프레임 */
+.frame{
+  min-height:100vh;
+  padding: var(--frame-pad);
+  background: var(--yellow);
+}
+.stage{
+  min-height: calc(100vh - var(--frame-pad)*2);
+  background:#fff;
+  border: 2px solid var(--yellow);
+  outline: 2px solid var(--yellow);
+  position:relative;
+  padding: 32px clamp(16px, 4vw, 48px) 120px;
+}
+
+/* 상단 우측: 검색 + 인증 */
+.topbar{ display:flex; justify-content:flex-end; }
+.top-actions{
+  display:flex; align-items:center; gap:12px;
+}
+
+/* 펼쳐지는 검색(아이콘만 → hover/focus 시 왼쪽으로) */
+.search{
+  display:flex; flex-direction:row-reverse; align-items:center; gap:8px;
+}
+.search .icon{
+  width:36px; height:36px; display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:50%;
+  background:#ffd400; color: var(--white); cursor:pointer; padding:0;
+}
+.search input{
+  width:0; opacity:0; padding:0; height:36px;
+  border:1px solid var(--line); border-radius:999px; background:#fff;
+  transition: width .25s ease, opacity .2s ease, padding .25s ease;
+  font-size:14px; line-height:36px;
+}
+.search:hover input,
+.search:focus-within input{
+  width:220px; opacity:1; padding:0 12px;
+}
+
+/* 로그인/회원가입 */
+.auth{ display:flex; align-items:center; gap:10px; }
+.auth .btn{
+  height:30px; padding:0 10px; border:1px solid var(--line);
+  background:var(--yellow); border-radius:10px; font-weight:700; cursor:pointer;
+}
+
+/* 제목 */
+.page-title{
+  text-align:center;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  margin: 24px 0 28px;
+}
+
+/* 후기 카드 그리드 */
+.reviews-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 28px 36px;
+  max-width: 980px;
+  margin: 0 auto 36px;
+}
+@media (max-width: 900px){
+  .reviews-grid{ grid-template-columns: 1fr; }
+}
+
+/* 카드 */
+.review-card{
+  background:#fff;
+  border: 12px solid var(--yellow-soft);   /* 두툼한 노란 라운드 */
+  border-radius: 18px;
+  padding: 18px 20px;
+}
+.r-title{ margin:0 0 4px; font-weight:800; }
+.r-sub{ margin:0 0 10px; font-size:13px; color:#555; }
+.r-body{ margin:0 0 14px; line-height:1.5; color:#333; }
+
+.r-meta{
+  display:flex; align-items:center; gap:10px;
+  font-size:13px; color:#666;
+}
+.avatar{
+  width:28px; height:28px; border-radius:50%;
+  display:grid; place-items:center; background:#f1f1f1;
+}
+
+/* 하단 필터/검색 */
+.filter-bar{
+  max-width: 980px;
+  margin: 12px auto 8px;
+  display:flex; align-items:center; gap:12px;
+}
+.select{
+  height: 40px; padding:0 10px; border:1px solid var(--line);
+  border-radius:8px; background:#fff; font-weight:600;
+}
+.search-long{
+  flex:1; position:relative; height:40px;
+  display:flex; align-items:center;
+  border:1px solid var(--line); border-radius:999px;
+  background:#fff;
+}
+.search-long input{
+  flex:1; height:100%; border:none; outline:none; padding:0 14px;
+  font-size:14px; background:transparent;
+}
+.search-long .go{
+  width:44px; height:44px; margin-right:-2px; margin-left:auto;
+  border:1px solid var(--line); border-radius:50%; background:var(--yellow);
+  display:grid; place-items:center; cursor:pointer;
+}
+
+/* 페이지네이션 */
+.pagination{
+  display:flex; justify-content:center; align-items:center; gap:14px;
+  margin: 8px 0 80px;
+}
+.page{
+  color:#333; text-decoration:none; font-weight:600;
+}
+.page.is-active{
+  color:#000; position:relative;
+}
+.page.is-active::after{
+  content:""; position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
+  width:6px; height:6px; background:#333; border-radius:50%;
+}
+.page.next{ font-size:18px; }
+
+.to-top {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #111;
+  background: #ffd400;   /* 노란 배경 */
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+}
+.to-top svg {
+  width: 20px;
+  height: 20px;
+  fill: #111;   /* 화살표 검정 */
+}
