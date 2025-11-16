@@ -5,15 +5,42 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>공지사항</title>
   <link rel="stylesheet" href="../css_vscode/notice.css" />
+  <!-- ⭐️ 목록 페이지를 위한 추가 스타일 -->
+  <style>
+    /* 테이블 제목 셀에 링크 스타일 추가 */
+    .table .title-cell a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .table .title-cell a:hover {
+      text-decoration: underline;
+      color: #000;
+    }
+    /* 테이블 로딩 및 빈 상태 표시 */
+    .table .empty-row td {
+      text-align: center;
+      padding: 40px 0;
+      color: #777;
+    }
+    /* 페이지네이션 'current' 스타일 덮어쓰기 (CSS 우선순위) */
+    .pagination button.page.current {
+      font-weight: 700;
+      color: #000;
+      background-color: #ffd400; /* 테마 색상 */
+      border-color: #ffd400;
+    }
+  </style>
 </head>
 <body>
+  <!-- 상단바 (수정 없음) -->
   <header class="topbar">
     <div class="brand">패스비</div>
     <div></div>
     <nav class="top-actions">
       <form class="search" role="search">
         <button class="icon" aria-label="검색">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <svg viewBox="0 0 24" 24" width="18" height="18" aria-hidden="true">
             <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
             <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
           </svg>
@@ -25,6 +52,7 @@
     </nav>
   </header>
 
+  <!-- 좌측 메뉴 (수정 없음) -->
   <aside class="left-rail">
     <div class="side-title">공지사항</div>
   </aside>
@@ -36,36 +64,37 @@
       <div class="spacer"></div>
 
       <div class="table-group">
-  <form class="inline-filter" id="inlineSearch" role="search">
-    <select name="field">
-      <option value="title">제목</option>
-      <option value="detail">제목+내용</option>>
-    </select>
-    <input type="search" name="q" placeholder="검색어 입력" />
-    <button class="search-btn" aria-label="검색">🔍</button>
-  </form>
+        <!-- ⭐️ 검색 폼 수정: API와 연동하기 위해 id 부여 -->
+        <form class="inline-filter" id="search-form" role="search">
+          <select name="field" disabled> <!-- API 9.1이 키워드만 받으므로 '제목+내용' 고정 -->
+            <option value="detail">제목+내용</option>
+            <!-- <option value="title">제목</option> -->
+          </select>
+          <input type="search" id="search-keyword" name="q" placeholder="검색어 입력" />
+          <button class="search-btn" type="submit" aria-label="검색">🔍</button>
+        </form>
 
-  <table class="table">
-    <caption class="sr-only">자료 목록</caption>
-    <thead>
-      <tr>
-        <th style="width:90px;">No</th>
-        <th>제목</th>
-        <th style="width:160px;">등록일</th>
-        </tr>
-    </thead>
-    <tbody id="listBody"></tbody>
-  </table>
-</div>
+        <table class="table">
+          <caption class="sr-only">공지사항 목록</caption>
+          <thead>
+            <tr>
+              <th style="width:90px;">No</th>
+              <th>제목</th>
+              <th style="width:160px;">등록일</th>
+            </tr>
+          </thead>
+          <!-- ⭐️ API 9.1 스크립트가 이 tbody를 채웁니다 -->
+          <tbody id="listBody">
+            <!-- 로딩 상태 (초기) -->
+            <tr class="empty-row">
+              <td colspan="3">게시글을 불러오는 중입니다...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <nav class="pagination" aria-label="페이지">
-        <button class="page current" data-page="1">1</button>
-        <button class="page" data-page="2">2</button>
-        <button class="page" data-page="3">3</button>
-        <button class="page" data-page="4">4</button>
-        <button class="page" data-page="5">5</button>
-        <button class="page next" data-page="next">&gt;</button>
-      </nav>
+      <!-- ⭐️ 페이지네이션: 스크립트가 동적으로 버튼을 생성합니다 -->
+      <nav class="pagination" aria-label="페이지"></nav>
 
       <div class="filler"></div>
       <footer class="content-footer">
@@ -73,8 +102,149 @@
       </footer>
     </section>
   </main>
-  <script src="../js_vscode/search_all.js"></script>
-  <script src="../js_vscode/notice.js" defer></script>
+  
+  <!-- 
+    ⭐️⭐️⭐️ API 9.1 (목록 조회) 호출 스크립트 ⭐️⭐️⭐️
+    (기존의 notice.js, search_all.js 스크립트 태그는 삭제합니다)
+  -->
+  <script>
+    // 1. 필요한 HTML 요소들을 미리 선택
+    const listBody = document.getElementById('listBody');
+    const paginationNav = document.querySelector('.pagination');
+    const searchForm = document.getElementById('search-form');
+    const searchKeywordInput = document.getElementById('search-keyword');
+
+    // 2. 페이지 로드 시, 그리고 버튼 클릭 시 공지사항을 불러오는 메인 함수
+    async function fetchNotices(page = 0, keyword = '') {
+      
+      // 2-1. 로딩 상태 표시
+      listBody.innerHTML = `
+        <tr class="empty-row">
+          <td colspan="3">게시글을 불러오는 중입니다...</td>
+        </tr>`;
+
+      try {
+        // 2-2. API 9.1 엔드포인트
+        // (size=10, sort=createdAt,desc 고정. 필요시 변경 가능)
+        const API_ENDPOINT = `/api/notices?page=${page}&size=10&sort=createdAt,desc&keyword=${encodeURIComponent(keyword)}`;
+        
+        const response = await fetch(API_ENDPOINT);
+
+        if (!response.ok) {
+          throw new Error('데이터를 불러오는데 실패했습니다.');
+        }
+
+        const data = await response.json(); // Page<NoticeResponseDto>
+
+        // 2-3. 데이터로 테이블과 페이지네이션을 렌더링
+        renderTable(data);
+        renderPagination(data);
+
+      } catch (error) {
+        console.error('Error fetching notices:', error);
+        listBody.innerHTML = `
+          <tr class="empty-row">
+            <td colspan="3">${error.message}</td>
+          </tr>`;
+      }
+    }
+
+    // 3. 테이블(tbody) 렌더링 함수
+    function renderTable(data) {
+      listBody.innerHTML = ''; // 기존 내용 삭제
+
+      if (data.content.length === 0) {
+        listBody.innerHTML = `
+          <tr class="empty-row">
+            <td colspan="3">검색 결과가 없습니다.</td>
+          </tr>`;
+        return;
+      }
+
+      // ⭐️ 최신순 'No'를 계산하기 위함
+      const totalElements = data.totalElements; 
+      const pageOffset = data.pageable.offset;
+
+      data.content.forEach((notice, index) => {
+        const tr = document.createElement('tr');
+        
+        // ⭐️ 'No' 계산: (전체 개수) - (현재 페이지 오프셋 + 현재 아이템 인덱스)
+        const postNumber = totalElements - pageOffset - index;
+        
+        // ⭐️ '제목'을 누르면 notice_full.html(상세)로 이동
+        tr.innerHTML = `
+          <td>${postNumber}</td>
+          <td class="title-cell">
+            <a href="notice_full.html?id=${notice.id}">
+              ${notice.title}
+            </a>
+          </td>
+          <td>${notice.createdAt.split('T')[0]}</td> 
+        `;
+        listBody.appendChild(tr);
+      });
+    }
+
+    // 4. 페이지네이션(nav) 렌더링 함수
+    function renderPagination(data) {
+      paginationNav.innerHTML = ''; // 기존 버튼 삭제
+
+      const totalPages = data.totalPages;
+      const currentPage = data.pageable.pageNumber; // 0부터 시작
+      const keyword = searchKeywordInput.value;
+
+      // ⭐️ 5개 단위로 페이지 그룹 생성 (1-5, 6-10, ...)
+      const pageGroupSize = 5;
+      const startPage = Math.floor(currentPage / pageGroupSize) * pageGroupSize;
+      const endPage = Math.min(startPage + pageGroupSize, totalPages);
+
+      // 4-1. '이전' (Prev) 버튼
+      if (startPage > 0) {
+        const prevButton = createPageButton(startPage - 1, '&lt;', keyword);
+        paginationNav.appendChild(prevButton);
+      }
+
+      // 4-2. 숫자 버튼
+      for (let i = startPage; i < endPage; i++) {
+        const pageButton = createPageButton(i, i + 1, keyword);
+        if (i === currentPage) {
+          pageButton.classList.add('current'); // ⭐️ 현재 페이지
+        }
+        paginationNav.appendChild(pageButton);
+      }
+
+      // 4-3. '다음' (Next) 버튼
+      if (endPage < totalPages) {
+        const nextButton = createPageButton(endPage, '&gt;', keyword);
+        paginationNav.appendChild(nextButton);
+      }
+    }
+
+    // 5. (Helper) 페이지 버튼 생성 함수
+    function createPageButton(page, text, keyword) {
+      const button = document.createElement('button');
+      button.className = 'page';
+      button.innerHTML = text;
+      button.addEventListener('click', () => {
+        fetchNotices(page, keyword);
+      });
+      return button;
+    }
+
+    // 6. 이벤트 리스너 연결
+    // 6-1. 페이지 첫 로드 시: 0번 페이지, 빈 키워드로 시작
+    window.onload = () => {
+      fetchNotices(0, '');
+    };
+
+    // 6-2. 검색 폼 제출 시: 0번 페이지, 입력된 키워드로 검색
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // 폼 기본 제출 방지
+      const keyword = searchKeywordInput.value;
+      fetchNotices(0, keyword);
+    });
+
+  </script>
 
 </body>
 </html>
